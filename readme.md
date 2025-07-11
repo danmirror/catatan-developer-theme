@@ -2,7 +2,7 @@
 > themes ini hanya boleh di gunakan oleh developer dari catatan developer.
 
 ## instalation
-- hugo new site catatan-developer
+- $ hugo new site catatan-developer
 - gunakan submodule untuk theme atau extract manual dan taruh di dalam folder themes
 - copy paste code ini ke hugo.toml
 
