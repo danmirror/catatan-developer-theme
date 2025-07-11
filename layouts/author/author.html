@@ -1,0 +1,42 @@
+{{ define "main" }}
+
+<div class="container">
+	<div class="container mb-4" >
+		<h5 class="title">{{ .Title }} </h5>
+		<h2>Kenalan yuk sama para penulis</h2>
+		<h5 class="description-title">Ini adalah orang-orang di balik tulisan kita!</h5>
+	</div>
+    <div class="row">
+        <div class="col-sm-8 mb-5">
+            {{ if .Sections }}
+            <div class="row">
+                {{ range .Sections }}
+                <div class="col-sm-6 zoom-effect-list ">
+                    
+                    <a href="{{ .RelPermalink }}">
+                        <div class="shadow p-3 rounded my-2">
+                            <div class="row">
+                                <div class="col col-sm-4">
+                                    <div class="image-container loading-image size0">
+                                        <img src="{{ .Params.banner }}" alt="Banner for {{ .Title }}" class="rounded" style=" width: 120px; height: 120px;" onload="image_loaded(this)"/>
+                                    </div>
+                                </div>
+                                <div class="col col-sm-8 ">
+                                    <h6 class="title-card">{{ .Params.author }}</h6>
+                                    <div class="description-card-2">{{.Params.description}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+        <div class="col-sm-4">
+            {{partial "ads.html" .}}
+        </div>
+    </div>
+</div>
+
+{{ end }}

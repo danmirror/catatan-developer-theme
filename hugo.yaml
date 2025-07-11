@@ -1,0 +1,50 @@
+baseURL: https://example.org/
+title: catatan-developer
+languageCode: en-US
+theme: catatan-developer-theme
+
+params:
+  
+  favicon: true        # Set to true to add a link to the favicon.ico
+  noClasses: &nc false  # Set to true to use inline CSS for syntax highlighting
+  katex: 0.16.11        # KaTeX version / leave empty to use the latest version
+  headingoffset: 0      # Change heading levels when rendering markdown
+  linkicons: true      # Set to hover or true to add a link icon to headings
+  summaries: true      # Set to true to show summaries of posts on homepage
+  summaryLength: 10
+  schema: false         # Set to true to add Schema.org metadata
+  opengraph: false      # Set to true to add Open Graph metadata
+  twittercards: false   # Set to true to add Twitter Cards metadata
+  utterances:
+    repo:               # Set to Utterances repo URL to add Utterances comments
+    issueterm:          # Leave empty for the default blog post to issue mapping
+    theme:              # Leave empty to use the adaptive Utterances dark theme
+  netlify:
+    honeypot: false     # Set to true to add honeypot field in contact form
+    recaptcha: false    # Set to true to add recaptcha challenge in contact form
+  # css:                # Uncomment to add custom CSS from the assets directory
+  #   - css/foo.css
+  #   - bar.css
+  # js:                 # Uncomment to add custom JS from the assets directory
+  #   - js/foo.js
+  #   - bar.js
+pagination:
+  disableAliases: false
+  pagerSize: 5
+  path: homy
+  
+menu:
+  main:
+    - name: Tutorials
+      pageRef: /tutorial
+      weight: 1
+    - name: Issues
+      pageRef: /issue
+      weight: 2
+    # - name: About
+    #   pageRef: /about
+    #   weight: 3
+    - name: Author
+      pageRef: /author
+      weight: 3
+

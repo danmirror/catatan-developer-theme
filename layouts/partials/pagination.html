@@ -1,0 +1,10 @@
+{{ if gt .Paginator.TotalPages 1 }}
+  <nav>
+    {{ with .Paginator.Prev }}
+      <a class="btn btn-success mandatory-color text-white" href="{{ relLangURL .URL }}" rel="prev">« Previous</a>
+    {{ end }}
+    {{ with .Paginator.Next }}
+      <a class="btn btn-success mandatory-color text-white Pagination--right" href="{{ relLangURL .URL }}" rel="next">Next »</a>
+    {{ end }}
+  </nav>
+{{ end }}

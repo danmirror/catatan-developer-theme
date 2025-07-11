@@ -1,0 +1,34 @@
+{{ define "main" }}
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 mb-5">
+			<article class="shadow p-4 rounded">
+				<p class="title-post"> <a href="{{.Site.BaseURL }}author/{{.Params.linked }}">{{.Params.author }}</a>, {{ dateFormat "02 Jan 2006" .Params.date }}</p>
+				<h2 class="my-3">
+					{{ if .Title }}
+						{{ .Title }}
+					{{ else }}
+						Untitled Post
+					{{ end }}
+				</h2>
+				{{ .Content }}
+				<br>
+				<hr>
+				<tags>
+					{{ $tags := .Params.tags }}
+					{{ range $index, $tag := $tags }}
+						
+						<a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
+						{{ if ne (add $index 1) (len $tags) }}{{ end }}
+					{{ end }}
+					</p>
+				</tags>
+			</article>
+		</div>
+		<div class="col-sm-4">
+			{{partial "ads.html" .}}
+		</div>
+	</div>
+</div>
+{{ end }}

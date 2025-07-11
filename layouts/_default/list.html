@@ -1,0 +1,65 @@
+{{ define "main" }}
+
+{{ $context := dict "page" . "level" 1 "isdateshown" false }}
+
+<div class="container">
+	<div class="container mb-5">
+		<h5 class="title">{{ .Title }} </h5>
+		<h2>Mau membaca tentang apa nih?</h2>
+		<h5 class="description-title">Temukan materi yang cocok dengan kamu!</h5>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-8 mb-5">
+			
+			<div class="row">
+				
+				{{ $length := len .Paginator.Pages }}
+				{{ range $index, $page := .Paginator.Pages }}
+				<div class="col-lg-6 zoom-effect-list">
+					<article class="shadow  p-3 my-4 rounded">
+						<a class="" href="{{ $page.RelPermalink }}">
+						{{ $context := dict "page" . "level" 2 "isdateshown" true }}
+						
+						{{ with .Markup "home" }}
+							{{ with .Render }}
+								{{ if site.Params.summaries }}
+									{{ if $page.Params.banner }}
+										<div class="image-container loading-image size2">
+											<img src="{{ $page.Params.banner }}" alt="Banner for {{ $page.Params.Title }}" class="rounded" style="max-width: 900px; width: 100%; height: auto;" onload="image_loaded(this)"/>
+										</div>
+										
+										
+									{{ end }}
+									<h5 class=" title-card my-3">
+										 {{ $context.page.Title }}
+									</h5>
+									<div class="description-card-1">
+										<p> {{ .Summary.Text | plainify | truncate 150 }} </p>
+									</div>
+									
+								{{ else }}
+									{{ .Content }}
+								{{ end }}
+							{{ end }}
+						{{ end }}
+
+						</a>
+					</article>
+					{{ if add $index 1 | ne $length | and site.Params.divider }}
+						<div class="Divider"></div>
+					{{ end }}
+				</div>
+				{{ end }}
+
+				{{ partial "pagination.html" . }}
+			</div>	
+		</div>
+		
+		<div class="col-sm-4">
+		{{partial "ads.html" .}}
+		</div>
+	</div>
+</div>
+
+{{ end }}

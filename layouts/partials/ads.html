@@ -1,0 +1,82 @@
+
+<div class=" shadow mb-5 p-3 rounded" >
+	<div class="card-body">
+		<h5 class="card-title mb-3">Ada Kategori terbaru nih!</h5>
+
+		{{ $categories := slice }}
+		{{ range $category, $pages := .Site.Taxonomies.categories }}
+			{{ $latestPage := first 1 (sort $pages "Date" "desc") }}
+			{{ $categories = $categories | append (dict "name" $category "count" (len $pages) "date" (index $latestPage 0).Date) }}
+		{{ end }}
+
+		{{ $sortedCategories := sort $categories "date" "desc" }}
+		{{ range first 5 $sortedCategories }}
+			<div class="my-2 new-category-ads text-center">
+				<a href="/categories/{{ .name | urlize }}" class="btn btn-outline-success zoom-effect">
+					{{ .name }} ({{ .count }})
+				</a>
+			</div>
+		{{ end }}
+		
+	</div>
+</div>
+
+<!-- ads -->
+<div class="p-3">
+	<!-- <script type="text/javascript">
+		atOptions = {
+			'key' : 'e1bd5ee1b9e2b2341761a97d181bbda9',
+			'format' : 'iframe',
+			'height' : 250,
+			'width' : 300,
+			'params' : {}
+		};
+	</script>
+	<script type="text/javascript" src="//www.highperformanceformat.com/e1bd5ee1b9e2b2341761a97d181bbda9/invoke.js"></script> -->
+
+
+	<!-- google ads -->
+	<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8268065824874419"
+     crossorigin="anonymous"></script>
+	<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-8268065824874419"
+		data-ad-slot="9182328827"
+		data-ad-format="auto"
+		data-full-width-responsive="true"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script> -->
+</div>
+
+<!-- <div class="p-3">
+	<script async="async" data-cfasync="false" src="//pl25258218.profitablecpmrate.com/a45d7e88d3e0dba5e621e59dcdbc4e87/invoke.js"></script>
+	<div id="container-a45d7e88d3e0dba5e621e59dcdbc4e87"></div>
+</div> -->
+
+<div class="p-3">
+	<!-- <script type="text/javascript">
+		atOptions = {
+			'key' : 'f1f42604933bc2942d880f9b4cd9b4c1',
+			'format' : 'iframe',
+			'height' : 50,
+			'width' : 320,
+			'params' : {}
+		};
+	</script>
+	<script type="text/javascript" src="//www.highperformanceformat.com/f1f42604933bc2942d880f9b4cd9b4c1/invoke.js"></script> -->
+
+
+	<!-- google ads -->
+	<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8268065824874419"
+		crossorigin="anonymous"></script>
+	<ins class="adsbygoogle"
+		style="display:block"
+		data-ad-client="ca-pub-8268065824874419"
+		data-ad-slot="9182328827"
+		data-ad-format="auto"
+		data-full-width-responsive="true"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script> -->
+</div>	 

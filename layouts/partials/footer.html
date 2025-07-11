@@ -1,0 +1,42 @@
+<footer class="text-light pt-4 pb-3 mt-5">
+  <div class="container">
+    <div class="row">
+
+      <!-- Brand and tagline -->
+      <div class="col-md-4 mb-3">
+        <img src="{{ .Site.BaseURL }}images/logo_full.png" alt="">
+        <p class="text-muted">Buku saku untuk developer. Tempat berbagi tulisan dan penyelesaian masalah terkait Developer.</p>
+      </div>
+
+      <!-- Navigation links -->
+      <div class="col-md-4 mb-3 mt-2 ">
+        <h5 class="text-uppercase">Navigasi</h5>
+        <ul class="list-unstyled navigation-footer">
+          <li><a href="/" class=" text-decoration-none">Beranda</a></li>
+          <!-- <li><a href="/tutorial" class=" text-decoration-none">Tutorial</a></li>
+          <li><a href="/issue" class=" text-decoration-none">Issue</a></li> -->
+          <li><a href="/categories/" class=" text-decoration-none">Kategori</a></li>
+          <li><a href="/author/" class=" text-decoration-none">Penulis</a></li>
+          <li><a href="/about" class=" text-decoration-none">Tentang</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Media -->
+      <div class="col-md-4 mb-3 mt-2">
+        <h5 class="text-uppercase">Ikuti Kami</h5>
+        <a href="https://instagram.com/catatandeveloper" class="text-light" target="_blank" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zm5.25-2a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"/>
+            </svg>
+        </a>
+      </div>
+
+    </div>
+
+    <hr class="border-secondary">
+
+    <div class="text-center ">
+      &copy; {{ now.Year }}  {{.Site.Title}}. Dibuat dengan ❤️ menggunakan Hugo.
+    </div>
+  </div>
+</footer>

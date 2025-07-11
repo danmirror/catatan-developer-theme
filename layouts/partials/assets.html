@@ -1,0 +1,24 @@
+{{ $styles := slice }}
+{{ range readDir "themes/hugo-simple-theme/assets/css" }}
+  {{ if eq (path.Ext .Name) ".css" }}
+    {{ $style := resources.Get (printf "css/%s" .Name) | resources.Minify | resources.Fingerprint }}
+    {{ $styles = $styles | append $style }}
+  {{ end }}
+{{ end }}
+
+{{ range $styles }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}">
+{{ end }}
+
+
+{{ $scripts := slice }}
+{{ range readDir "themes/hugo-simple-theme/assets/js" }}
+  {{ if eq (path.Ext .Name) ".js" }}
+    {{ $script := resources.Get (printf "js/%s" .Name) | resources.Minify | resources.Fingerprint }}
+    {{ $scripts = $scripts | append $script }}
+  {{ end }}
+{{ end }}
+
+{{ range $scripts }}
+  <script src="{{ .RelPermalink }}"></script>
+{{ end }}

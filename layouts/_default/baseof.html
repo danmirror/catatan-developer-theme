@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    <link rel="icon" type="image/png" href="{{ .Site.BaseURL }}images/logo_144.png">
+    
+    <meta name="description" content="{{ .Params.description | default .Site.Params.description }}">
+    <meta name="keywords" content="{{ range $index, $keyword := .Params.keywords }}{{ if $index }}, {{ end }}{{ $keyword }}{{ end }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="{{ .Permalink }}">
+
+    <meta name="google-site-verification" content="3F0e2wpPxjmFV_LGmvEPN1b1RLAl8VK7sOdoAKcQP6w" />
+    
+    <!-- Open Graph for Social Media -->
+    <meta property="og:title" content="{{ .Title }}">
+    <meta property="og:description" content="{{ .Params.description | default .Site.Params.description }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ .Params.featuredImage | absURL  }}">
+
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ .Title }}">
+    <meta name="twitter:description" content="{{ .Params.description | default .Site.Params.description }}">
+    <meta name="twitter:image" content="{{ .Params.featuredImage | absURL  }}">
+
+    {{ block "load_paginator" . }}{{ end }}
+    {{ partial "assets.html" . }}
+    <script>
+        function image_loaded(img) {
+            setTimeout(() => {
+                img.classList.add('loaded');
+                const container = img.parentElement; // Get the parent div of the image
+                container.classList.remove('loading-image');
+
+                container.classList.remove('size0');
+                container.classList.remove('size1');
+                container.classList.remove('size2');
+            }, 50); // 5000 milliseconds = 5 seconds
+            
+        }
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8268065824874419" crossorigin="anonymous"></script>
+    {{ partial "meta.html" . }}
+</head>
+<body>
+    <header class="fixed-top">
+        <div class="container">
+            {{ partialCached "navbar.html" . .IsHome }}
+        </div>
+    </header>
+    <main class="mb-5">
+
+        {{ block "main" . }}{{ end }}
+    </main>
+    
+     {{ partial "footer.html" . }}
+     
+
+    <modal>
+                <!-- Modal -->
+        <div class="modal fade" id="searchpage" tabindex="-1" aria-labelledby="searchpage" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Search..." id="searchInput">
+                </div>
+                 <ul id="results"></ul>
+            </div>
+           
+            </div>
+        </div>
+        </div>
+    </modal>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js"></script>
+    <script>
+    fetch('/index.json')
+    .then(res => res.json())
+    .then(data => {
+        const fuse = new Fuse(data, { keys: ['title', 'content'], threshold: 0.3 });
+        const input = document.getElementById('searchInput');
+        const resultsList = document.getElementById('results');
+
+        input.addEventListener('input', () => {
+        const result = fuse.search(input.value);
+        resultsList.innerHTML = '';
+        result.forEach(({ item }) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="${item.permalink}">${item.title}</a>`;
+            resultsList.appendChild(li);
+        });
+        });
+    });
+
+
+    // focus
+    const searchModal = document.getElementById('searchpage');
+    const searchInput = document.getElementById('searchInput');
+
+    searchModal.addEventListener('shown.bs.modal', function () {
+        searchInput.focus();
+    });
+
+    
+
+    </script>
+  
+
+    <!-- <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "{{ .Title }}",
+          "description": "{{ .Params.description | default .Site.Params.description }}",
+          "url": "{{ .Permalink }}"
+        }
+
+    </script>
+    <script type='text/javascript' src='//pl25257896.profitablecpmrate.com/f3/55/d7/f355d730aa282d2c3ba3c5c700c739fe.js'></script> -->
+    
+</body>
+</html>

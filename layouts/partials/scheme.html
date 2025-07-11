@@ -1,0 +1,70 @@
+<div class="container">
+	<div class="container mb-4" >
+		<h5 class="title">{{ .Title }} </h5>
+		<h2>Mau membaca apa nih?</h2>
+		<h5 class="description-title">Temukan materi yang cocok dengan kamu!</h5>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-8 mb-5">
+			{{ if .Sections }}
+			<div class="row">
+				{{ range .Sections }}
+				<div class="col-sm-6 zoom-effect-list ">
+					
+					<a href="{{ .RelPermalink }}">
+						<div class="shadow p-3 rounded my-2">
+							<div class="row">
+								<div class="col col-sm-4">
+									<div class="image-container loading-image size0">
+										<img src="{{ .Params.banner }}" alt="Banner for {{ .Title }}" class="rounded" style=" width: 100%; height: auto;" onload="image_loaded(this)"/>
+									</div>
+								</div>
+								<div class="col col-sm-8 ">
+									<h6 class="title-card">{{ .Title }}</h6>
+									<div class="description-card-2">{{.Summary}}</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+				{{ end }}
+			</div>
+		
+		
+		{{ else }}
+
+			{{ $currentSection := (split .File.Dir "/") }}
+			{{ $currentSectionName := index $currentSection 1 }}
+			{{ range $page := site.RegularPages }}
+
+				{{ $prefix := $page.Params.prefix }}
+                <div class="container list-selection">
+                    <div class="row">
+                        {{ if in $prefix $currentSectionName }}
+                        <a href="{{ .RelPermalink }}" class="text-black background-color rounded mb-2 py-2 zoom-effect-list">
+                            <div class="col-sm-12 ">
+                                <div class="row">
+                                    <div class="col-1 col-md-auto">
+                                        <svg  xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 10H7v2h10v-2zm2-7h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zm-5-5H7v2h7v-2z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="col-11 col-md-auto">
+                                    {{ .Title }}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {{ end }}
+                    </div>
+                </div>
+			{{ end }}
+		{{end}}
+				
+		</div>
+		
+		<div class="col-sm-4">
+		{{partial "ads.html" .}}
+		</div>
+	</div>
+</div>

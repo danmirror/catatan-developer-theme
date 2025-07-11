@@ -1,0 +1,8 @@
+name = "catatan developer theme"
+license = "Apache-2.0"
+description = "Theme build for website catatan developer"
+
+[author]
+  name = "danu andrean"
+  homepage = "https://github.com/danmirror/"
+

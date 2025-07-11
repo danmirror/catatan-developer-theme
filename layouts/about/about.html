@@ -1,0 +1,22 @@
+{{ define "main" }}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 mb-5">
+      <article class="shadow p-3">
+        <h2 class="my-3">
+          {{ if .Title }}
+              {{ .Title }}
+          {{ else }}
+              Untitled Post
+          {{ end }}
+        </h2>
+          {{ .Content }}
+       
+      </article>
+    </div>
+    <div class="col-sm-4">
+        {{partial "ads.html" .}}
+    </div>
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,18 @@
+<script type="application/ld+json">
+    {{- $json := dict "@context" "http://schema.org" }}
+    {{- $json = $json | merge (dict "@type" "Article") }}
+    {{- $json = $json | merge (dict "name" .Params.title) }}
+    {{- $json = $json | merge (dict "author" (dict "@type" "Person" "name" .Params.author)) }}
+
+    {{- if .Params.date }}
+        {{- $datePublished := dateFormat "02-01-2006" .Params.date }}
+        {{- $json = $json | merge (dict "datePublished" $datePublished) }}
+    {{- end }}
+
+    {{- $json = $json | merge (dict "image" (.Params.featuredImage | absURL)) }}
+    {{- if .Site.Params.logo }}
+        {{- $iconURL := .Site.Params.logo | absURL }}
+        {{- $json = $json | merge (dict "icon" $iconURL) }}
+    {{- end }}
+    {{ $json | jsonify | safeJS }}
+</script>
