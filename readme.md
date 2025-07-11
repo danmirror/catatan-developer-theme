@@ -7,31 +7,31 @@
 - copy paste code ini ke hugo.toml
 
 ```
-    baseURL = "https://catatandeveloper.id/"
-    languageCode = 'en-us'
-    title = 'Catatan Developer'
-    theme = "catatan-developer-theme"
+baseURL = "https://catatandeveloper.id/"
+languageCode = 'en-us'
+title = 'Catatan Developer'
+theme = "catatan-developer-theme"
 
-    [params]
-        logo = "images/logo_144.png"
+[params]
+    logo = "images/logo_144.png"
 
-    [pagination]
-        disableAliases = false
-        pagerSize = 6
-        path = 'page'
+[pagination]
+    disableAliases = false
+    pagerSize = 6
+    path = 'page'
 
-    [markup]
-        [markup.highlight]
-            codeFences = true
-            guessSyntax = true
-            hl_Lines = ""
-            lineNos = false
-            noClasses = true
-            style = "base16-snazzy"
-        
-        unsafe = true
-    [outputs]
-    home = ["HTML", "JSON"]
+[markup]
+    [markup.highlight]
+        codeFences = true
+        guessSyntax = true
+        hl_Lines = ""
+        lineNos = false
+        noClasses = true
+        style = "base16-snazzy"
+    
+    unsafe = true
+[outputs]
+home = ["HTML", "JSON"]
 ```
 
 ## run code
