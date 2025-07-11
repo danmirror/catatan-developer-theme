@@ -10,7 +10,7 @@
     baseURL = "https://catatandeveloper.id/"
     languageCode = 'en-us'
     title = 'Catatan Developer'
-    theme = "hugo-simple-theme"
+    theme = "catatan-developer-theme"
 
     [params]
     logo = "images/logo_144.png"
