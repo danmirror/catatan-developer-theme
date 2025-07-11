@@ -2,8 +2,14 @@
 > themes ini hanya boleh di gunakan oleh developer dari catatan developer.
 
 ## instalation
-- $ hugo new site catatan-developer
+- create site baru jika belum ada
+```
+$ hugo new site catatan-developer
+```
 - gunakan submodule untuk theme atau extract manual dan taruh di dalam folder themes
+```
+$ git submodule add https://github.com/danmirror/catatan-developer-theme.git themes/catatan-developer-theme
+```
 - copy paste code ini ke hugo.toml
 
 ```
