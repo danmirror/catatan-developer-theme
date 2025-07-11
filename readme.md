@@ -13,23 +13,23 @@
     theme = "catatan-developer-theme"
 
     [params]
-    logo = "images/logo_144.png"
+        logo = "images/logo_144.png"
 
     [pagination]
-    disableAliases = false
-    pagerSize = 6
-    path = 'page'
+        disableAliases = false
+        pagerSize = 6
+        path = 'page'
 
     [markup]
-    [markup.highlight]
-        codeFences = true
-        guessSyntax = true
-        hl_Lines = ""
-        lineNos = false
-        noClasses = true
-        style = "base16-snazzy"
-    
-    unsafe = true
+        [markup.highlight]
+            codeFences = true
+            guessSyntax = true
+            hl_Lines = ""
+            lineNos = false
+            noClasses = true
+            style = "base16-snazzy"
+        
+        unsafe = true
     [outputs]
     home = ["HTML", "JSON"]
 ```
