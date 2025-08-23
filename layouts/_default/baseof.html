@@ -134,6 +134,10 @@
             el.classList.add(current);
         });
 
+        document.querySelectorAll(".theme-article").forEach(el => {
+            el.classList.add(current);
+        });
+
         btn.addEventListener("click", () => {
             // hapus theme lama dari semua .theme-box
             document.querySelectorAll(".theme-box").forEach(el => {
@@ -149,6 +153,9 @@
                 el.classList.remove(current);
             });
             document.querySelectorAll(".theme-list").forEach(el => {
+                el.classList.remove(current);
+            });
+            document.querySelectorAll(".theme-article").forEach(el => {
                 el.classList.remove(current);
             });
 
@@ -178,6 +185,9 @@
                 el.classList.add(current);
             });
             document.querySelectorAll(".theme-list").forEach(el => {
+                el.classList.add(current);
+            });
+            document.querySelectorAll(".theme-article").forEach(el => {
                 el.classList.add(current);
             });
 

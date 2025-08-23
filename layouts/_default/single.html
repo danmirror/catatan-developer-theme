@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-8 mb-5">
-			<article class="shadow p-4  rounded">
+			<article class="shadow p-4 theme-article rounded">
 				<p class="title-post"> <a href="{{.Site.BaseURL }}author/{{.Params.linked }}">{{.Params.author }}</a>, {{ dateFormat "02 Jan 2006" .Params.date }}</p>
 				<h2 class="my-3 theme-description">
 					{{ if .Title }}
@@ -19,7 +19,7 @@
 					{{ $tags := .Params.tags }}
 					{{ range $index, $tag := $tags }}
 						
-						<a class=" rounded theme-box theme-description" href="{{ "/tags/" | relURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
+						<a class=" rounded " href="{{ "/tags/" | relURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
 						{{ if ne (add $index 1) (len $tags) }}{{ end }}
 					{{ end }}
 					</p>

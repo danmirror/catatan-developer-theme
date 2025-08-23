@@ -57,6 +57,16 @@ body.dark {
     color: #16313e;
 }
 
+.theme-article.light {
+    background-color: #fffdfd;
+    color: #16313e;
+}
+
+.theme-article.dark {
+    background-color: var(--dark);
+    color: #f1f1f1;
+}
+
 
 .theme-header.light {
     background-color: var(--green);
@@ -75,15 +85,6 @@ body.dark {
     color: #ffffff !important;
 }
 
-.theme-article.dark {
-    background-color: #eff3ef;
-    color: #0c0c0c !important;
-}
-
-.theme-article.light {
-    background-color: #ffffff!important;
-    color: #020202;
-}
 
 main{
     margin-top: 6em;
@@ -387,6 +388,10 @@ p.text-muted {
     color: var(--grey)!important;
 }
 
+tags a{
+    padding: .5em;
+    border: 1px solid #444; 
+}
 
 
 
