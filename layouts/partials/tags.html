@@ -7,10 +7,10 @@
   <tags>
     {{ range $term := $term_list }}
       {{ if isset $.Params $term }}
-        <ul class="Tags">
+        <ul class="Tags ">
           {{ range $.GetTerms $term }}
-            <li class="Tags-item u-background">
-              <a class="Tags-link u-clickable" href="{{ .RelPermalink }}" rel="tag">{{ .LinkTitle }}</a>
+            <li class="Tags-item u-background theme-box">
+              <a class="Tags-link u-clickable theme-box" href="{{ .RelPermalink }}" rel="tag">{{ .LinkTitle }}</a>
             </li>
           {{ end }}
         </ul>
