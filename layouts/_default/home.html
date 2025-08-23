@@ -155,14 +155,14 @@
     <div class="container">
         <h5 class="title">KATEGORI </h5>
         <h2>Mau membaca apa nih?</h2>
-        <h5 class="description-title">Temukan kategori yang cocok dengan kamu!</h5>
+        <h5 class="description-title theme-description">Temukan kategori yang cocok dengan kamu!</h5>
     </div>
 
     <div class="container">
         <div class="row mb-5 mt-4">
             <div class="col-sm-4 zoom-effect-list">
                 <a href="/categories/pemrograman">
-                    <div class="shadow p-3 rounded my-2">
+                    <div class="shadow p-3 rounded theme-box my-2">
                         <div class="row">
                             <div class=" col-sm-4 logo-container">
                                 <div class="logo color-program">
@@ -175,8 +175,8 @@
                                 </div>
                             </div>
                             <div class="col col-sm-8 ">
-                                <h6 class="title-card">Pemrograman</h6>
-                                <div class="description-card-2">Membahas tentang pemrograman umum seperti C, C++, C#, python, java dan lainnya</div>
+                                <h6 class="title-card theme-description">Pemrograman</h6>
+                                <div class="description-card-2 theme-description-1">Membahas tentang pemrograman umum seperti C, C++, C#, python, java dan lainnya</div>
                             </div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
             </div>
             <div class="col-sm-4 zoom-effect-list">
                 <a href="/categories/elektronik">
-                    <div class="shadow p-3 rounded my-2">
+                    <div class="shadow p-3 rounded theme-box my-2">
                         <div class="row">
                             <div class="col-sm-4 logo-container">
                                 <div class="logo color-web">
@@ -192,8 +192,8 @@
                                 </div>
                             </div>
                             <div class="col col-sm-8 ">
-                                <h6 class="title-card">Elektronik</h6>
-                                <div class="description-card-2">Membahas tentang elektronik, IoT, Arduino, otomasi industri dan lainya.</div>
+                                <h6 class="title-card theme-description">Elektronik</h6>
+                                <div class="description-card-2 theme-description-1">Membahas tentang elektronik, IoT, Arduino, otomasi industri dan lainya.</div>
                             </div>
                         </div>
                     </div>
@@ -201,7 +201,7 @@
             </div>
             <div class="col-sm-4 zoom-effect-list">
                 <a href="/categories/">
-                    <div class="shadow p-3 rounded my-2">
+                    <div class="shadow p-3 rounded theme-box my-2">
                         <div class="row">
                             <div class="col-sm-4 logo-container">
                                 <div class="logo color-layer">
@@ -210,8 +210,8 @@
                                 </div>
                             </div>
                             <div class="col col-sm-8 ">
-                                <h6 class="title-card">Kategori lain</h6>
-                                <div class="description-card-2">Temukan tutorial dalam kategori lainnya yang sesuai dengan keinginan kamu!</div>
+                                <h6 class="title-card theme-description">Kategori lain</h6>
+                                <div class="description-card-2 theme-description-1">Temukan tutorial dalam kategori lainnya yang sesuai dengan keinginan kamu!</div>
                             </div>
                         </div>
                     </div>
@@ -222,14 +222,14 @@
     <div class="container">
         <h5 class="title">POSTINGAN </h5>
         <h2>Apa yang Baru dari kami? </h2>
-        <h5 class="description-title">Baca postingan terbaru kami!</h5>
+        <h5 class="description-title theme-description">Baca postingan terbaru kami!</h5>
     </div>
 	<div class="row">
     {{ .Content }}
     {{ $length := len .Paginator.Pages }}
     {{ range $index, $page := .Paginator.Pages }}
 		<div class="col-sm-4 my-3 zoom-effect-list">
-			<article class="shadow  p-4 rounded">
+			<article class="shadow  p-4 rounded theme-box">
                 <a class="description-card-1" href="{{ $page.RelPermalink }}">
                     {{ $context := dict "page" . "level" 2 "isdateshown" true }}
                     
@@ -242,10 +242,10 @@
                                     <img src="{{ $page.Params.banner }}" alt="Banner for {{ $page.Params.Title }}" class="rounded" style="max-width: 900px; width: 100%; height: auto;" onload="image_loaded(this)"/>
                                 </div>
                                 {{ end }}
-                                <h5 class="title-card my-3">
+                                <h5 class="title-card theme-description my-3">
                                     {{ $context.page.Title }}
                                 </h5>
-                                <div class="description-card-1">
+                                <div class="description-card-1 theme-description-1">
                                     <p> {{ .Summary.Text | plainify | truncate 150 }} </p>
                                 </div>
                                 

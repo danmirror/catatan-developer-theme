@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>{{ .Title }} - {{ .Site.Title }}</title>
     <link rel="icon" type="image/png" href="{{ .Site.BaseURL }}images/logo_144.png">
-    
+
     <meta name="description" content="{{ .Params.description | default .Site.Params.description }}">
-    <meta name="keywords" content="{{ range $index, $keyword := .Params.keywords }}{{ if $index }}, {{ end }}{{ $keyword }}{{ end }}">
+    <meta name="keywords"
+        content="{{ range $index, $keyword := .Params.keywords }}{{ if $index }}, {{ end }}{{ $keyword }}{{ end }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="{{ .Permalink }}">
 
     <meta name="google-site-verification" content="3F0e2wpPxjmFV_LGmvEPN1b1RLAl8VK7sOdoAKcQP6w" />
-    
+
     <!-- Open Graph for Social Media -->
     <meta property="og:title" content="{{ .Title }}">
     <meta property="og:description" content="{{ .Params.description | default .Site.Params.description }}">
@@ -28,6 +30,7 @@
 
     {{ block "load_paginator" . }}{{ end }}
     {{ partial "assets.html" . }}
+
     <script>
         function image_loaded(img) {
             setTimeout(() => {
@@ -39,14 +42,16 @@
                 container.classList.remove('size1');
                 container.classList.remove('size2');
             }, 50); // 5000 milliseconds = 5 seconds
-            
+
         }
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8268065824874419" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8268065824874419"
+        crossorigin="anonymous"></script>
     {{ partial "meta.html" . }}
 </head>
+
 <body>
-    <header class="fixed-top">
+    <header class="fixed-top theme-header">
         <div class="container">
             {{ partialCached "navbar.html" . .IsHome }}
         </div>
@@ -55,27 +60,28 @@
 
         {{ block "main" . }}{{ end }}
     </main>
-    
-     {{ partial "footer.html" . }}
-     
+
+    {{ partial "footer.html" . }}
+
 
     <modal>
-                <!-- Modal -->
+        <!-- Modal -->
         <div class="modal fade" id="searchpage" tabindex="-1" aria-labelledby="searchpage" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Search..." id="searchInput">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default" placeholder="Search..." id="searchInput">
+                        </div>
+                        <ul id="results"></ul>
+                    </div>
+
                 </div>
-                 <ul id="results"></ul>
             </div>
-           
-            </div>
-        </div>
         </div>
     </modal>
 
@@ -83,37 +89,133 @@
 
     <script src="https://cdn.jsdelivr.net/npm/fuse.js"></script>
     <script>
-    fetch('/index.json')
-    .then(res => res.json())
-    .then(data => {
-        const fuse = new Fuse(data, { keys: ['title', 'content'], threshold: 0.3 });
-        const input = document.getElementById('searchInput');
-        const resultsList = document.getElementById('results');
 
-        input.addEventListener('input', () => {
-        const result = fuse.search(input.value);
-        resultsList.innerHTML = '';
-        result.forEach(({ item }) => {
-            const li = document.createElement('li');
-            li.innerHTML = `<a href="${item.permalink}">${item.title}</a>`;
-            resultsList.appendChild(li);
+        const btn = document.getElementById("theme-toggle");
+        const icon = document.getElementById("theme-icon");
+
+        const sunIcon = `
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+    <path d="M440-800v-120h80v120h-80Zm0 760v-120h80v120h-80Zm360-400v-80h120v80H800Zm-760 0v-80h120v80H40Zm708-252-56-56 70-72 58 58-72 70ZM198-140l-58-58 72-70 56 56-70 72Zm564 0-70-72 56-56 72 70-58 58ZM212-692l-72-70 58-58 70 72-56 56Zm268 452q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm0-80q67 0 113.5-46.5T640-480q0-67-46.5-113.5T480-640q-67 0-113.5 46.5T320-480q0 67 46.5 113.5T480-320Zm0-160Z"/>
+</svg>
+`;
+
+        const moonIcon = `
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+  <path d="M480-120q-150 0-255-105T120-480q0-118 66-211t174-130q-20 44-30 89t-10 94q0 150 105 255t255 105q49 0 94-10t89-30q-37 108-130 174T480-120Z"/>
+</svg>
+`;
+
+        const themes = ["light", "dark"];
+        let current = localStorage.getItem("theme") || "light";
+
+        if (current === "light") {
+            icon.innerHTML = moonIcon;
+        } else {
+            icon.innerHTML = sunIcon;
+        }
+
+        // set awal
+        document.body.className = current;
+        document.querySelectorAll(".theme-box").forEach(el => {
+            el.classList.add(current);
         });
+        document.querySelectorAll(".theme-header").forEach(el => {
+            el.classList.add(current);
         });
-    });
+
+        document.querySelectorAll(".theme-description").forEach(el => {
+            el.classList.add(current);
+        });
+
+        document.querySelectorAll(".theme-description-1").forEach(el => {
+            el.classList.add(current);
+        });
+        document.querySelectorAll(".theme-list").forEach(el => {
+            el.classList.add(current);
+        });
+
+        btn.addEventListener("click", () => {
+            // hapus theme lama dari semua .theme-box
+            document.querySelectorAll(".theme-box").forEach(el => {
+                el.classList.remove(current);
+            });
+            document.querySelectorAll(".theme-header").forEach(el => {
+                el.classList.remove(current);
+            });
+            document.querySelectorAll(".theme-description").forEach(el => {
+                el.classList.remove(current);
+            });
+            document.querySelectorAll(".theme-description-1").forEach(el => {
+                el.classList.remove(current);
+            });
+            document.querySelectorAll(".theme-list").forEach(el => {
+                el.classList.remove(current);
+            });
+
+            // ganti ke theme baru
+            let index = themes.indexOf(current);
+            index = (index + 1) % themes.length;
+            current = themes[index];
+
+            if (current === "light") {
+                icon.innerHTML = moonIcon;
+            } else {
+                icon.innerHTML = sunIcon;
+            }
 
 
-    // focus
-    const searchModal = document.getElementById('searchpage');
-    const searchInput = document.getElementById('searchInput');
+            document.body.className = current;
+            document.querySelectorAll(".theme-box").forEach(el => {
+                el.classList.add(current);
+            });
+            document.querySelectorAll(".theme-header").forEach(el => {
+                el.classList.add(current);
+            });
+            document.querySelectorAll(".theme-description").forEach(el => {
+                el.classList.add(current);
+            });
+            document.querySelectorAll(".theme-description-1").forEach(el => {
+                el.classList.add(current);
+            });
+            document.querySelectorAll(".theme-list").forEach(el => {
+                el.classList.add(current);
+            });
 
-    searchModal.addEventListener('shown.bs.modal', function () {
-        searchInput.focus();
-    });
+            localStorage.setItem("theme", current);
+        });
 
-    
+
+        fetch('/index.json')
+            .then(res => res.json())
+            .then(data => {
+                const fuse = new Fuse(data, { keys: ['title', 'content'], threshold: 0.3 });
+                const input = document.getElementById('searchInput');
+                const resultsList = document.getElementById('results');
+
+                input.addEventListener('input', () => {
+                    const result = fuse.search(input.value);
+                    resultsList.innerHTML = '';
+                    result.forEach(({ item }) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<a href="${item.permalink}">${item.title}</a>`;
+                        resultsList.appendChild(li);
+                    });
+                });
+            });
+
+
+        // focus
+        const searchModal = document.getElementById('searchpage');
+        const searchInput = document.getElementById('searchInput');
+
+        searchModal.addEventListener('shown.bs.modal', function () {
+            searchInput.focus();
+        });
+
+
 
     </script>
-  
+
 
     <!-- <script type="application/ld+json">
         {
@@ -126,6 +228,7 @@
 
     </script>
     <script type='text/javascript' src='//pl25257896.profitablecpmrate.com/f3/55/d7/f355d730aa282d2c3ba3c5c700c739fe.js'></script> -->
-    
+
 </body>
+
 </html>

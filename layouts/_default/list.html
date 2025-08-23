@@ -6,7 +6,7 @@
 	<div class="container mb-5">
 		<h5 class="title">{{ .Title }} </h5>
 		<h2>Mau membaca tentang apa nih?</h2>
-		<h5 class="description-title">Temukan materi yang cocok dengan kamu!</h5>
+		<h5 class="description-title theme-description">Temukan materi yang cocok dengan kamu!</h5>
 	</div>
 
 	<div class="row">
@@ -17,7 +17,7 @@
 				{{ $length := len .Paginator.Pages }}
 				{{ range $index, $page := .Paginator.Pages }}
 				<div class="col-lg-6 zoom-effect-list">
-					<article class="shadow  p-3 my-4 rounded">
+					<article class="shadow  p-3 my-4 rounded theme-box">
 						<a class="" href="{{ $page.RelPermalink }}">
 						{{ $context := dict "page" . "level" 2 "isdateshown" true }}
 						
@@ -31,10 +31,10 @@
 										
 										
 									{{ end }}
-									<h5 class=" title-card my-3">
+									<h5 class=" title-card my-3 theme-description">
 										 {{ $context.page.Title }}
 									</h5>
-									<div class="description-card-1">
+									<div class="description-card-1 theme-description-1">
 										<p> {{ .Summary.Text | plainify | truncate 150 }} </p>
 									</div>
 									
