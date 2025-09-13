@@ -350,6 +350,10 @@ th {
     background-color: #f4f4f4;
 }
 
+th.dark {
+    background-color: var(--dark);
+}
+
 tags a{
     padding: .5em;
 }
