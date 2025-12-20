@@ -4,12 +4,15 @@
 	<div class="row">
 		<div class="col-sm-8 mb-5">
 			<article class="shadow p-4 theme-article rounded">
-				<p class="title-post"> <a href="{{.Site.BaseURL }}author/{{.Params.linked }}">{{.Params.author }}</a>, {{ dateFormat "02 Jan 2006" .Params.date }}</p>
+				<p class="title-post"> <a href="{{.Site.BaseURL }}author/{{.Params.linked }}">{{.Params.author }}</a>,
+					{{ dateFormat "02 Jan 2006" .Params.date }}</p>
+
+
 				<h2 class="my-3 theme-description">
 					{{ if .Title }}
-						{{ .Title }}
+					{{ .Title }}
 					{{ else }}
-						Untitled Post
+					Untitled Post
 					{{ end }}
 				</h2>
 				{{ .Content }}
@@ -18,13 +21,75 @@
 				<tags>
 					{{ $tags := .Params.tags }}
 					{{ range $index, $tag := $tags }}
-						
-						<a class=" rounded " href="{{ "/tags/" | relURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
-						{{ if ne (add $index 1) (len $tags) }}{{ end }}
+
+					<a class=" rounded " href="{{ " /tags/" | relURL }}{{ $tag | urlize }}">#{{ $tag }}</a>
+					{{ if ne (add $index 1) (len $tags) }}{{ end }}
 					{{ end }}
 					</p>
 				</tags>
+
 			</article>
+			<h2 class="mb-3 mt-5 theme-description">
+				Kategori yang serupa
+			</h2>
+			{{ $allPages := slice }}
+
+			{{ range .GetTerms "categories" }}
+			{{ range .Pages }}
+			{{ if and (ne .Permalink $.Permalink) (not (in $allPages .)) }}
+			{{ $allPages = $allPages | append . }}
+			{{ end }}
+			{{ end }}
+			{{ end }}
+
+			{{ if gt (len $allPages) 0 }}
+			<div class="row">
+
+				{{ $length := len $allPages }}
+
+				{{ range $index, $page := $allPages }}
+				<div class="col-sm-6 my-3 zoom-effect-list">
+					<article class="shadow p-4 rounded theme-box">
+						<a class="description-card-1" href="{{ $page.RelPermalink }}">
+
+							{{ $context := dict "page" $page "level" 2 "isdateshown" true }}
+
+							{{ with $page.Markup "home" }}
+							{{ with .Render }}
+							{{ if site.Params.summaries }}
+
+							{{ if $page.Params.banner }}
+							<div class="image-container loading-image size2">
+								<img src="{{ $page.Params.banner }}" alt="Banner for {{ $page.Title }}" class="rounded"
+									style="max-width: 900px; width: 100%; height: auto;" onload="image_loaded(this)" />
+							</div>
+							{{ end }}
+
+							<h5 class="title-card theme-description my-3">
+								{{ $page.Title }}
+							</h5>
+
+							<div class="description-card-1 theme-description-1">
+								<p>{{ .Summary.Text | plainify | truncate 500 }}</p>
+							</div>
+
+							{{ else }}
+							{{ .Content }}
+							{{ end }}
+							{{ end }}
+							{{ end }}
+
+						</a>
+					</article>
+
+					{{ if add $index 1 | ne $length | and site.Params.divider }}
+					<div class="Divider"></div>
+					{{ end }}
+				</div>
+				{{ end }}
+
+			</div>
+			{{ end }}
 		</div>
 		<div class="col-sm-4">
 			{{partial "ads.html" .}}
