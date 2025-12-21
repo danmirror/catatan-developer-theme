@@ -29,6 +29,12 @@
 				</tags>
 
 			</article>
+
+			{{ if .Params.comments }}
+			{{ partial "comments.html" . }}
+			{{ end }}
+
+
 			<h2 class="mb-3 mt-5 theme-description">
 				Kategori yang serupa
 			</h2>
@@ -90,6 +96,14 @@
 
 			</div>
 			{{ end }}
+
+			
+
+
+			<!-- {{ if site.Config.Services.Disqus.Shortname }}
+				{{ template "_internal/disqus.html" . }}
+			{{ end }} -->
+
 		</div>
 		<div class="col-sm-4">
 			{{partial "ads.html" .}}
