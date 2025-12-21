@@ -1,33 +1,44 @@
 {{ define "main" }}
 
 <div class="container">
-	<div class="container mb-4" >
-		<h5 class="title">{{ .Title }} </h5>
-		<h2>Kenalan yuk sama para penulis</h2>
-		<h5 class="description-title theme-description">Ini adalah orang-orang di balik tulisan kita!</h5>
-	</div>
+    <div class="container mb-4">
+        <h5 class="title">{{ .Title }} </h5>
+        <h2>Kenalan yuk sama para penulis</h2>
+        <h5 class="description-title theme-description">Ini adalah orang-orang di balik tulisan kita!</h5>
+    </div>
     <div class="row">
         <div class="col-sm-8 mb-5">
             {{ if .Sections }}
-            <div class="row">
+            <div class="row row-cols-2 row-cols-sm-2 g-3">
                 {{ range .Sections }}
-                <div class="col-sm-6 zoom-effect-list ">
-                    
+                <div class="zoom-effect-list">
+
                     <a href="{{ .RelPermalink }}">
-                        <div class="shadow p-3 rounded theme-box my-2">
-                            <div class="row">
-                                <div class="col col-sm-4">
+                        <div class="shadow p-3 rounded theme-box">
+                            <div class="row text-center text-md-start">
+
+                                <!-- IMAGE -->
+                                <div class="col-12 col-sm-4 col-md-auto d-flex justify-content-center mb-3 mb-sm-0">
                                     <div class="image-container loading-image size0">
-                                        <img src="{{ .Params.banner }}" alt="Banner for {{ .Title }}" class="rounded" style=" width: 120px; height: 120px;" onload="image_loaded(this)"/>
+                                        <img src="{{ .Params.banner }}" alt="Banner for {{ .Title }}" class="rounded"
+                                            style="width:120px;height:120px;" onload="image_loaded(this)" />
                                     </div>
                                 </div>
-                                <div class="col col-sm-8 ">
-                                    <h6 class="title-card theme-description">{{ .Params.author }}</h6>
-                                    <div class="description-card-2 theme-description-1">{{.Params.description}}</div>
+
+                                <!-- TEXT -->
+                                <div class="col-12 col-sm-8 col-md px-4">
+                                    <h6 class="title-card theme-description">
+                                        {{ .Params.author }}
+                                    </h6>
+                                    <div class="description-card-2 theme-description-1">
+                                        {{ .Params.description }}
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </a>
+
                 </div>
                 {{ end }}
             </div>

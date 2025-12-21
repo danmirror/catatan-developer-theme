@@ -316,6 +316,7 @@ pre {
     justify-content: center;
     overflow: hidden;
 }
+
 .image-container img {
     object-fit: cover;
     opacity: 0;
@@ -326,6 +327,17 @@ pre {
     opacity: 1;
 }
 
+@media (max-width: 576px) {
+    .image-container-parent {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 12px;
+    }
+
+    .theme-box {
+        text-align: center;
+    }
+}
 
 /* Membuat tabel bisa digeser horizontal di perangkat kecil */
 .table-responsive {
