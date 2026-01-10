@@ -8,7 +8,12 @@
 
     <meta name="description" content="{{ .Params.description | default .Site.Params.description }}">
     <meta name="keywords"
-        content="{{ range $index, $keyword := .Params.keywords }}{{ if $index }}, {{ end }}{{ $keyword }}{{ end }}">
+      content="{{ with .Params.keywords }}
+        {{ delimit . ", " }}
+      {{ else }}
+        {{ delimit .Site.Params.keywords ", " }}
+      {{ end }}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="{{ .Permalink }}">
 
